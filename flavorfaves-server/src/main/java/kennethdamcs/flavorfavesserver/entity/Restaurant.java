@@ -17,11 +17,14 @@ public class Restaurant {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "location")
+    @Column(name = "address")
     private String address;
 
     @Column(name = "phone")
     private String phone;
+
+    @Column(name = "location")
+    private String location;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")

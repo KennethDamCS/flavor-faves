@@ -18,4 +18,5 @@ public class PopularItem {
 
     @Column(name = "picture_url")
     private String itemPictureUrl;
+
 }
