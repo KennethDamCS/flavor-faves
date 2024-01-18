@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class PopularItemResponse {
 
+    private Long id;
     private String itemName;
     private String itemPictureUrl;
 
@@ -15,7 +16,8 @@ public class PopularItemResponse {
     }
 
     //Parameterized constructor
-    public PopularItemResponse(String itemName, String itemPictureUrl) {
+    public PopularItemResponse(Long id, String itemName, String itemPictureUrl) {
+        this.id = id;
         this.itemName = itemName;
         this.itemPictureUrl = itemPictureUrl;
     }
