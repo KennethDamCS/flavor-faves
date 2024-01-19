@@ -30,4 +30,13 @@ public class RestaurantResponse {
         this.popularItems = popularItems;
     }
 
+    public RestaurantResponse(Long id, String name, String address, String phone, String location) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.location = location;
+
+    }
+
 }

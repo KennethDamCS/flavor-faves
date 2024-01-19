@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 @Service
 public class RestaurantServiceImpl implements RestaurantService{
     private final RestaurantRepository restaurantRepository;
-    private final RestaurantService restaurantService;
+//    private final RestaurantService restaurantService;
 
     @Autowired
-    public RestaurantServiceImpl(RestaurantRepository restaurantRepository, RestaurantService restaurantService) {
+    public RestaurantServiceImpl(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
-        this.restaurantService = restaurantService;
+//        this.restaurantService = restaurantService;
     }
 
     @Override
