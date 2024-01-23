@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'; 
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; 
 
 const Search = () => {
-  const [locations, setLocations] = useState([]);
+  const navigate = useNavigate(); 
   const [selectedLocation, setSelectedLocation] = useState('');
-
-  useEffect(() => {
-    //Fetch from GetAllByLocation API
-    axios.get('/api/v1/restaurants/{location}') 
-      .then(response => {
-        setLocations(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching locations:', error);
-      });
-  }, []);
 
   const handleLocationChange = (event) => {
     setSelectedLocation(event.target.value);
+  };
+
+  const handleSearch = () => {
+    if (selectedLocation) {
+      // Navigate to RestaurantList with the selected location
+      navigate(`/restaurants/${selectedLocation.toLowerCase()}`); 
+    }
   };
 
   return (
@@ -36,17 +33,16 @@ const Search = () => {
             onChange={handleLocationChange}
           >
             <option value="" disabled>Select a location</option>
-            {locations.map(location => (
-              <option key={location} value={location}>{location}</option>
-            ))}
+            <option value="Los Angeles">Los Angeles</option>
+            <option value="Vancouver">Vancouver</option>
           </select>
           <div className="input-group-append">
-            <button className="btn btn-outline-secondary" type="button">Search</button>
+            <button className="btn btn-outline-secondary" type="button" onClick={handleSearch}>
+              Search
+            </button>
           </div>
         </div>
       </div>
-
-      {/* Add more content or components based on the selected location */}
     </div>
   );
 };

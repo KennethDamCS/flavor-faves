@@ -37,6 +37,12 @@
   padding: 2em;
 }
 
+.input-group-append {
+  padding-top: 2px;
+}
+
+
 .read-the-docs {
   color: #888;
 }
+
