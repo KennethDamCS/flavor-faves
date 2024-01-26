@@ -1,9 +1,8 @@
-// RestaurantList.jsx
 import React from 'react';
 
 const RestaurantList = ({ restaurants }) => {
   if (!restaurants) {
-    // Handle the case where the 'restaurants' prop is undefined or null
+    //Handle the case where the 'restaurants' prop is undefined or null
     return <div>No restaurants available</div>;
   }
 
@@ -16,6 +15,8 @@ const RestaurantList = ({ restaurants }) => {
             {/* Display restaurant details */}
             <div>Name: {restaurant.name}</div>
             <div>Address: {restaurant.address}</div>
+            <div>Location: {restaurant.location}</div>
+            <div>Phone: {restaurant.phone}</div>
             {/* Add more details as needed */}
           </li>
         ))}

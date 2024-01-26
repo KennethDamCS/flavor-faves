@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
+import RestaurantList from './RestaurantList';
 
 const Search = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [selectedLocation, setSelectedLocation] = useState('');
+  const [restaurants, setRestaurants] = useState(null);
 
   const handleLocationChange = (event) => {
     setSelectedLocation(event.target.value);
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (selectedLocation) {
-      // Navigate to RestaurantList with the selected location
-      navigate(`/restaurants/${selectedLocation.toLowerCase()}`); 
+      try {
+        const response = await axios.get(`http://localhost:8080/api/v1/restaurants/${selectedLocation.toLowerCase()}`);
+        setRestaurants(response.data);
+        navigate(`/restaurants/${selectedLocation.toLowerCase()}`);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle the error, show a message, etc.
+      }
     }
   };
 
@@ -43,6 +51,9 @@ const Search = () => {
           </div>
         </div>
       </div>
+
+      {/* Render RestaurantList only when restaurants are available */}
+      {restaurants && <RestaurantList restaurants={restaurants} />}
     </div>
   );
 };
