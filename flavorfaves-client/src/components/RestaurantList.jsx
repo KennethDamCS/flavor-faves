@@ -2,7 +2,7 @@ import React from 'react';
 
 const RestaurantList = ({ restaurants }) => {
   if (!restaurants) {
-    //Handle the case where the 'restaurants' prop is undefined or null
+    // Handle the case where the 'restaurants' prop is undefined or null
     return <div>No restaurants available</div>;
   }
 
@@ -17,7 +17,24 @@ const RestaurantList = ({ restaurants }) => {
             <div>Address: {restaurant.address}</div>
             <div>Location: {restaurant.location}</div>
             <div>Phone: {restaurant.phone}</div>
-            {/* Add more details as needed */}
+            {/* Display popular items if available */}
+            {restaurant.popularItems && restaurant.popularItems.length > 0 && (
+              <div>
+                <h3>Popular Items</h3>
+                <ul>
+                  {restaurant.popularItems.map(item => (
+                    <li key={item.id}>
+                      {/* Display popular item details */}
+                      <div>Name: {item.itemName}</div>
+                      {/* Display image if available */}
+                      {/* {item.itemPictureUrl && (
+                        <img src={item.itemPictureUrl} alt={item.itemName} style={{ maxWidth: '100px' }} />
+                      )} */}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </li>
         ))}
       </ul>

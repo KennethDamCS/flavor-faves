@@ -20,7 +20,6 @@ const Search = () => {
         navigate(`/restaurants/${selectedLocation.toLowerCase()}`);
       } catch (error) {
         console.error('Error fetching data:', error);
-        // Handle the error, show a message, etc.
       }
     }
   };

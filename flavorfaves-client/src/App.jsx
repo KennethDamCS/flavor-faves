@@ -10,7 +10,6 @@ function App() {
     <Router>
       <div>
         <Search />
-        <RestaurantList />
       </div>
     </Router>
   )
