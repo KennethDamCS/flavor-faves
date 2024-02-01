@@ -1,43 +1,40 @@
+
 import React from 'react';
 
 const RestaurantList = ({ restaurants }) => {
+  function capitalizeFirstLetter(string) {
+    return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+  }
+
   if (!restaurants) {
-    // Handle the case where the 'restaurants' prop is undefined or null
-    return <div>No restaurants available</div>;
+    return <div className="text-left">No restaurants available</div>;
   }
 
   return (
-    <div>
+    <div className="restaurant-list container">
       <h2>Restaurant List</h2>
-      <ul>
+      <div className="row">
         {restaurants.map(restaurant => (
-          <li key={restaurant.id}>
-            {/* Display restaurant details */}
-            <div>Name: {restaurant.name}</div>
-            <div>Address: {restaurant.address}</div>
-            <div>Location: {restaurant.location}</div>
-            <div>Phone: {restaurant.phone}</div>
-            {/* Display popular items if available */}
-            {restaurant.popularItems && restaurant.popularItems.length > 0 && (
-              <div>
-                <h3>Popular Items</h3>
-                <ul>
-                  {restaurant.popularItems.map(item => (
-                    <li key={item.id}>
-                      {/* Display popular item details */}
-                      <div>Name: {item.itemName}</div>
-                      {/* Display image if available */}
-                      {/* {item.itemPictureUrl && (
-                        <img src={item.itemPictureUrl} alt={item.itemName} style={{ maxWidth: '100px' }} />
-                      )} */}
-                    </li>
-                  ))}
-                </ul>
+          <div className="col-sm-12 col-md-6 col-lg-4 mb-4" key={restaurant.id}>
+            <div className="card h-100">
+              <div className="card-body">
+                <h3 className="card-title">{restaurant.name}</h3>
+                <p className="card-text">Address: {restaurant.address}</p>
+                <p className="card-text">Location: {capitalizeFirstLetter(restaurant.location)}</p>
+                <p className="card-text">Phone: {restaurant.phone}</p>
+                {restaurant.popularItems && restaurant.popularItems.length > 0 && (
+                  <div>
+                    <h4>Popular Items</h4>
+                    {restaurant.popularItems.map(item => (
+                      <p key={item.id}>{item.itemName}</p>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
-          </li>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
